@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <style type="text/css">
+        #box{width: 600px; border: 1px solid darkblue; margin: 50px auto; overflow: hidden; padding: 10px;}
+        ul,li{padding: 0; margin: 0; list-style: none;}
+        ul{overflow: hidden;}
+        li{float: left; width: 200px; height: 30px; line-height: 30px; text-align: center;}
+        span{width: 200px; height: 30px; line-height: 30px; display: block; cursor: pointer;
+            border: 1px solid #000; margin: 0 auto; text-align: center;
+            background: url("up.gif") no-repeat 10px center;}
+    </style>
+    <script type="text/javascript" src="../../js/jquery.js" ></script>
+    <script type="text/javascript">
+        $(function(){
+            var obj = $("li:gt(2)").not(":last");
+            var sp = $("span");
+            $("span").click(function(){
+                obj.slideToggle();
+                if(sp.text() == "隐藏其他内容"){
+                    sp.text("显示其他内容");
+                    sp.css("background","url(down.gif) no-repeat 10px center");
+                }else{
+                    sp.text("隐藏其他内容");
+                    sp.css("background","url(up.gif) no-repeat 10px center");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="box">
+    <ul>
+        <li>佳能</li>
+        <li>尼康</li>
+        <li>富士</li>
+        <li>柯达</li>
+        <li>宾得</li>
+        <li>索尼</li>
+        <li>松下</li>
+        <li>卡西欧</li>
+        <li>三星</li>
+        <li>理光</li>
+        <li>奥林巴斯</li>
+        <li>明基</li>
+        <li>其它品牌相机</li>
+    </ul>
+    <span>隐藏其他内容</span>
+</div>
+</body>
+</html>

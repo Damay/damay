@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>个人简历</title>
+<style type="text/css">
+	#content{ margin:20px auto; width:900px; height:5000px; position:relative; background:url(images/jianli/bg.jpg) no-repeat;}
+	.qiqiu{position:absolute; right:2px; top:180px;}
+	#geren{width:807px; height:520px; margin:0 auto; padding-top:110px;}
+	#jineng{width:807px; height:636px; margin:0 auto;}
+	#gongzuo{width:807px; height:340px; margin:0 auto; padding-top:20px;}
+	#zuopin{width:807px; height:620px; margin:0 auto; padding-top:10px;}
+	.funv{width:807px; height:620px; margin:0 auto; padding-top:20px;}
+	.app{width:807px; height:620px; margin:0 auto; padding-top:20px;}
+	.banner{width:807px; height:1060px; margin:0 auto; padding-top:20px;}
+	#end{width:807px; height:282px; margin:0 auto; padding-top:20px;}
+</style>
+<script type="text/javascript">
+        window.onload = function(){
+            var myScrollTop = 0;
+            var myClientHeight = 0;
+            var myTimer = null;
+
+            //获取可见内容区域的高度
+            if(document.documentElement.clientHeight){
+                myClientHeight =  document.documentElement.clientHeight;
+            }else{
+                myClientHeight =  document.body.clientHeight;
+            }
+
+            document.getElementById("ad").style.top = "180px";  //悬浮菜单的初始位置
+
+            //滚动页面时触发
+            window.onscroll = function(){
+                //获取可见内容区域的高度
+                if(document.documentElement.clientHeight){
+                    myClientHeight =  document.documentElement.clientHeight;
+                }else{
+                    myClientHeight =  document.body.clientHeight;
+                }
+
+                //获取可见内容区域的高度
+                if(document.documentElement.scrollTop){
+                    myScrollTop =  document.documentElement.scrollTop;
+                }else{
+                    myScrollTop =  document.body.scrollTop;
+                }
+                var myOffsetHeight = document.getElementById("ad").offsetHeight;
+                myTargetTop = myScrollTop + parseInt(myClientHeight/2) - parseInt(myOffsetHeight/2);
+                setTimeout( function(){
+                    yundong(myTargetTop);
+                },50)
+            }
+
+            window.onresize = function(){
+                if(document.documentElement.clientHeight){
+                    myClientHeight =  document.documentElement.clientHeight;
+                }else{
+                    myClientHeight =  document.body.clientHeight;
+                }
+            }
+            function yundong(myTargetTop){
+                clearInterval(myTimer);
+
+                myTimer = setInterval(
+                        function(){
+                            var myTop = parseInt(document.getElementById("ad").style.top);
+                            var l = Math.abs(myTop - myTargetTop);
+                            speed = parseInt(l/5);
+                            console.log("速度已经调整：" + speed);
+                            if((myTop < myTargetTop) && (myTargetTop - myTop > 10)){
+                                myTop = myTop + speed;
+                            }
+                            else if((myTop > myTargetTop) && (myTop - myTargetTop > 10)){
+                                myTop = myTop - speed;
+                            }
+                            else{
+                                console.log("运动已经停止");
+                                clearInterval(myTimer);
+                            }
+                            document.getElementById("ad").style.top = myTop + "px";
+                            console.log("top：" + myTop +"px");
+                            console.log("目标：" + myTargetTop);
+                        }
+                        ,24);
+            }
+        }
+    </script>
+</head>
+
+<body>
+	 <div id="content">
+	 	<p id="geren"><img src="images/jianli/geren.png" /></p>
+		<p id="jineng"><img src="images/jianli/jineng.png" /></p>
+		<p id="gongzuo"><img src="images/jianli/gongzuo.png" /></p>
+		<p id="zuopin"><img src="images/jianli/yujing.png" /></p>
+		<p class="funv"><img src="images/jianli/funv.png" /></p>
+		<p class="app"><img src="images/jianli/app.png" /></p>
+		<p class="banner"><img src="images/jianli/banner.png" /></p>
+		<p id="end"><img src="images/jianli/end.png"/></p>
+        <p class="qiqiu" id="ad"><img src="images/jianli/气球.png" border="0" usemap="#Map" />
+<map name="Map" id="#Map">
+	<area shape="circle" coords="108,226,42" href="#geren" />
+	<area shape="circle" coords="52,143,34" href="#jineng" />
+	<area shape="circle" coords="118,127,31" href="#gongzuo" />
+	<area shape="circle" coords="40,44,36" href="#zuopin" />
+</map></p>
+    </div>
+</body>
+</html>

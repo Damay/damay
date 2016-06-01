@@ -1,0 +1,96 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    border: none;
+}
+
+#box {
+    margin: 50px auto;
+    width: 560px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+#box #leftbut {
+    width: 46px;
+    height: 45px;
+    display: block;
+    background-image: url(../../images/jingling.png);
+    background-position: 0px 0px;
+    position: absolute;
+    top: 135px;
+    left: 9px;
+    cursor: pointer;
+}
+
+#box #rightbut {
+    width: 46px;
+    height: 45px;
+    display: block;
+    background-image: url(../../images/jingling.png);
+    background-position: 0px -46px;
+    position: absolute;
+    top: 135px;
+    right: 9px;
+    cursor: pointer;
+}
+
+#box #zhezhao {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    width: 560px;
+    background-color: black;
+    opacity: 0.5; /*给火狐、chrome看的*/
+    filter: alpha(opacity=50); /*是给IE看的*/
+    color: white;
+}
+
+#box h3 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: white;
+    line-height: 40px;
+    margin-left: 20px;
+}
+
+#box h3 a:link, a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+#box #diandian {
+    bottom: 12px;
+    right: 9px;
+    position: absolute;
+}
+
+#box #diandian a {
+    width: 12px;
+    height: 11px;
+    display: block;
+    background-image: url(../../images/jingling.png);
+    background-position: -26px -127px;
+    cursor: pointer;
+    float: left;
+    margin-left: 10px;
+}
+
+#box ul {
+    width: 8000px;
+    list-style: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#box ul li{
+    float: left;
+
+}

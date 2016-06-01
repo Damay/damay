@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>图片轮播</title>
+    <link href="../css/css.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript">
+        window.onload = function(){
+            var leftbut = document.getElementById("leftbut");
+            var rightbut = document.getElementById("rightbut");
+            var imagesul = document.getElementById("imagesbox");
+            //获取点点
+            var dian = document.getElementById("diandian").getElementsByTagName("a");
+            //标题
+            var title = document.getElementById("biaoti");
+            var box = document.getElementById("box");
+            //获取图片的总数
+            var imglength = document.getElementById("imagesbox").getElementsByTagName("li").length;
+            //图片链接
+            var imghref = document.getElementById("imagesbox").getElementsByTagName("a");
+            var index1 = 0; //下一个图片的下标
+            var leftgrap = 0; //离左边的left值
+            var step = 0; //步长
+            var num=0;
+            var timer = null; //定时器
+            var autoTimer = null;
+            var action = false;
+
+            var titles = [];
+            titles[0] = "我是第一张图";
+            titles[1] = "我是第二张图";
+            titles[2] = "我是第三张图";
+            titles[3] = "我是第四张图";
+
+            var hrefs = [];
+            hrefs[0] = "www.baidu.com";
+            hrefs[1] = "www.qq.com";
+            hrefs[2] = "www.sina.com";
+            hrefs[3] = "www.163.com";
+
+            huantu();
+            rightbut.onclick = function(){
+                if(!action){
+                    if(index1==(imglength-1)){
+                        num = 112;
+                        index1 = 0;
+                    }else{
+                        num = -56;
+                        index1++;
+                    }
+                    clearInterval(timer);
+                    move();
+                }
+            }
+
+            leftbut.onclick = function(){
+                if(!action){
+                    if(index1==0){
+                        num = -112;
+                        index1 = (imglength-1);
+                    }else{
+                        num = 56;
+                        index1--;
+                    }
+                    clearInterval(timer);
+                    move();
+                }
+            }
+
+            //点点换图
+            for(var i=0; i<dian.length; i++){
+                dian[i].bianhao=i;
+                if(!action){
+                    dian[i].onclick = function(){
+                        if(this.bianhao>index1){
+                            num = -56;
+                            index1 = this.bianhao;
+                            move();
+                        }else if(this.bianhao<index1){
+                            num = 56;
+                            index1 = this.bianhao;
+                            move();
+                        }
+                    }
+                }
+            }
+
+            function move(){
+                clearInterval(autoTimer);
+                action = true;
+                leftgrap = index1==0 ? 0 : index1*(-560);//计算此次滑动离左边的距离， 如果是最后一张图片， left设置为0
+                timer = setInterval(function(){
+                    step += num; //设置此次滑动的步长
+                    if(step==leftgrap){
+                        clearInterval(timer);
+                        action = false;
+                        autoTimer = setInterval(auto,5000);
+                    }
+                    imagesul.style.left = step+"px";
+                }, 25);
+
+                huantu();
+            }
+
+            autoTimer = setInterval(auto,4000);
+
+            function auto(){
+                action = true;
+                index1++;
+                num = index1 == 4 ? 112 : -56;
+                index1 = index1 == 4 ? 0 : index1;
+                leftgrap = index1*(-560);//计算此次滑动离左边的距离， 如果是最后一张图片， left设置为0
+                timer = setInterval(function(){
+                    step += num; //设置此次滑动的步长
+                    if(step==leftgrap){
+                        clearInterval(timer);
+                        action = false;
+                    }
+                    imagesul.style.left = step+"px";
+                }, 25);
+                huantu();
+            }
+
+            function huantu(){
+                title.innerHTML = titles[index1];
+                imghref.href = hrefs[index1];
+                for(var i=0; i<dian.length; i++){
+                    dian[i].style.backgroundPosition = "-26px -127px";
+                }
+                dian[index1].style.backgroundPosition = "-10px -127px";
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="box">
+    <ul id="imagesbox">
+        <li><a href="#"><img src="../../images/1.jpg"/></a></li>
+        <li><a href="#"><img src="../../images/2.jpg"/></a></li>
+        <li><a href="#"><img src="../../images/3.jpg"/></a></li>
+        <li><a href="#"><img src="../../images/4.jpg"/></a></li>
+    </ul>
+    <a id="leftbut"></a>
+    <a id="rightbut"></a>
+    <div id="zhezhao"></div>
+    <!--由于zhezhao这个层已经半透明了，所以看着形式字在盒子里，字也不能在盒子里-->
+    <h3><a id="biaoti" href="#">我是第一张图。。。。。。</a></h3>
+    <div id="diandian">
+        <a></a>
+        <a></a>
+        <a></a>
+        <a></a>
+    </div>
+    <div style="display:none;"><img src="../../images/1.jpg" /><img src="../../images/2.jpg" /><img src="../../images/3.jpg" /><img src="../../images/4.jpg" /></div><!--为了预先读图用的-->
+</div>
+</body>
+</html>

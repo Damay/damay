@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <style type="text/css">
+        .box {
+            width: 490px;
+            height: 170px;
+            padding: 5px;
+            border: 1px solid darkseagreen;
+            margin: 0 auto;position: relative;
+            overflow: hidden;
+        }
+
+        ul, li,ol {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        ul li{
+            display: none;
+            float: left;
+        }
+        ul .current{
+            display: block;
+        }
+
+        ol .current{
+            background-color: darksalmon;
+        }
+
+        ol li{width: 18px; height: 18px; float: left; background-color: #FFF; margin-left: 3px;;
+            border: 1px solid darkcyan; line-height: 18px; text-align: center; cursor:pointer;}
+        ol{ position: absolute;bottom:10px; right: 10px;}
+    </style>
+    <script type="text/javascript" src="../../js/jquery.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var flag = 0;
+            var timer = null;
+            $("ol li").mouseover(function(){
+                show($(this).index());
+            });
+
+            function display(){
+                flag++;
+                flag = flag>=4 ? 0 : flag;
+                show(flag);
+            }
+
+            function show(num){
+                $("ol li").eq(num).addClass("current").siblings().removeClass();
+                $("ul li").eq(num).fadeIn().siblings().removeClass().hide();
+                flag = num;
+            }
+
+            timer = setInterval(display,1000);
+            $("li").mouseover(function(){
+                clearInterval(timer);
+            }).mouseout(function(){
+                timer = setInterval(display,1000);
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="box">
+    <ul>
+        <li class="current"><img src="01.jpg"/></li>
+        <li><img src="02.jpg"/></li>
+        <li><img src="03.jpg"/></li>
+        <li><img src="04.jpg"/></li>
+    </ul>
+    <ol>
+        <li class="current">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ol>
+</div>
+</body>
+</html>

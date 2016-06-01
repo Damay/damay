@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <style type="text/css">
+        .box{width: 710px; height: 350px; box-shadow: 2 2 6 slategray;
+            border: 1px solid slategray; border-bottom: 3px solid slategray; margin: 0 auto; padding: 10px 10px; }
+        video{margin: 0 30px;}
+        button{padding: 4px 8px; height: 28px; margin: 10px 1px;}
+    </style>
+    <script type="text/javascript" >
+        window.onload = function (){
+            var btn = document.getElementById("play");
+            var stop = document.getElementById("stop");
+            var video = document.getElementById("vid");
+            var jin = document.getElementById("jin");
+            var tui = document.getElementById("tui");
+            var three = document.getElementById("three");
+            var three1 = document.getElementById("threeTwo");
+            var nomarl = document.getElementById("nomarl");
+            var jiada = document.getElementById("jiada");
+            var jianxiao = document.getElementById("jianxiao");
+            var jy = document.getElementById("jy");
+            btn.onclick = function(){
+                video.play();
+            };
+
+            stop.onclick = function(){
+                video.pause();
+            };
+
+            jin.onclick = function(){
+                video.currentTime+=10;
+            }
+
+            tui.onclick = function(){
+                video.currentTime-=10;
+            }
+
+            three.onclick = function(){
+                video.playbackRate = 3;
+            }
+
+            three1.onclick = function(){
+                video.playbackRate = 0.3;
+            }
+
+            nomarl.onclick = function(){
+                video.playbackRate = 1;
+            }
+
+            jiada.onclick = function(){
+                video.volume += 0.2;
+            }
+
+            jianxiao.onclick = function(){
+                video.volume -= 0.2;
+            }
+
+            jy.onclick = function(){
+                var flag = video.muted == false ? true : false;
+                video.muted = flag;
+                if(flag){
+                    jy.innerHTML = "静音";
+                }else{
+                    jy.innerHTML = "开启";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <!--<video controls preload>
+        <source src="movie.webm" type="audio/webm"/>
+        <source src="movie.ogg" type="audio/ogg"/>
+        <source src="movie.mp4.fiq" type="audio/mp4"/>
+    </video>-->
+    <div class="box">
+        <video controls src="movie.webm" id="vid" poster="j.jpg">
+            您的浏览器不支持HTML5，请尽快升级。。。
+        </video>
+        <br/>
+        <button id="play">播放</button>
+        <button id="stop">暂停</button>
+        <button id="jin">快进</button>
+        <button id="tui">快退</button>
+        <button id="three">快三倍</button>
+        <button id="threeTwo">慢三倍</button>
+        <button id="nomarl">正常</button>
+        <button id="jiada">加大音量</button>
+        <button id="jianxiao">减小音量</button>
+        <button id="jy">静音</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>个人网站</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/cufon-yui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/fonts.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/fonts-replace.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        window.onload = function(){
+            var myScrollTop = 0;
+            var myClientHeight = 0;
+            var myTimer = null;
+
+            //获取可见内容区域的高度
+            if(document.documentElement.clientHeight){
+                myClientHeight =  document.documentElement.clientHeight;
+            }else{
+                myClientHeight =  document.body.clientHeight;
+            }
+
+            document.getElementById("ad").style.top = "240px";  //悬浮菜单的初始位置
+
+            //滚动页面时触发
+            window.onscroll = function(){
+                //获取可见内容区域的高度
+                if(document.documentElement.clientHeight){
+                    myClientHeight =  document.documentElement.clientHeight;
+                }else{
+                    myClientHeight =  document.body.clientHeight;
+                }
+
+                //获取可见内容区域的高度
+                if(document.documentElement.scrollTop){
+                    myScrollTop =  document.documentElement.scrollTop;
+                }else{
+                    myScrollTop =  document.body.scrollTop;
+                }
+                var myOffsetHeight = document.getElementById("ad").offsetHeight;
+                myTargetTop = myScrollTop + parseInt(myClientHeight/2) - parseInt(myOffsetHeight/2);
+                setTimeout( function(){
+                    yundong(myTargetTop);
+
+                },50)
+            }
+
+            window.onresize = function(){
+                if(document.documentElement.clientHeight){
+                    myClientHeight =  document.documentElement.clientHeight;
+                }else{
+                    myClientHeight =  document.body.clientHeight;
+                }
+            }
+            function yundong(myTargetTop){
+                clearInterval(myTimer);
+
+                myTimer = setInterval(
+                        function(){
+                            var myTop = parseInt(document.getElementById("ad").style.top);
+                            var l = Math.abs(myTop - myTargetTop);
+                            speed = parseInt(l/5);
+                            console.log("速度已经调整：" + speed);
+                            if((myTop < myTargetTop) && (myTargetTop - myTop > 10)){
+                                myTop = myTop + speed;
+                            }
+                            else if((myTop > myTargetTop) && (myTop - myTargetTop > 10)){
+                                myTop = myTop - speed;
+                            }
+                            else{
+                                console.log("运动已经停止");
+                                clearInterval(myTimer);
+                            }
+                            document.getElementById("ad").style.top = myTop + "px";
+                            console.log("top：" + myTop +"px");
+                            console.log("目标：" + myTargetTop);
+                        }
+                        ,24);
+            }
+
+            var $obj = $;
+            $obj(".index").click(function(){
+                $obj(".yeshu").stop().slideToggle("slow");
+            });
+
+            $obj(".index").click(function(){
+
+            });
+        }
+    </script>
+</head>
+
+</head>
+<body>
+<div id="header">
+    <p style="display: block;" class="portfolio cufon_k29">
+        <cufon style="width: 25px; height: 14px;" alt="THIS " class="cufon cufon-canvas"><canvas style="width: 33px; height: 16px; top: -1px; left: 0px;" height="16" width="33"></canvas><cufontext>THIS</cufontext></cufon>
+        <cufon style="width: 12px; height: 14px;" alt="IS " class="cufon cufon-canvas"><canvas style="width: 20px; height: 16px; top: -1px; left: 0px;" height="16" width="20"></canvas><cufontext>IS</cufontext></cufon>
+        <cufon style="width: 21px; height: 14px;" alt="THE " class="cufon cufon-canvas"><canvas style="width: 29px; height: 16px; top: -1px; left: 0px;" height="16" width="29"></canvas><cufontext>THE</cufontext></cufon>
+        <cufon style="width: 53px; height: 14px;" alt="PERSONAL " class="cufon cufon-canvas"><canvas style="width: 61px; height: 16px; top: -1px; left: 0px;" height="16" width="61"></canvas><cufontext>PERSONAL</cufontext></cufon>
+        <cufon style="width: 55px; height: 14px;" alt="PORTFOLIO " class="cufon cufon-canvas"><canvas style="width: 63px; height: 16px; top: -1px; left: 0px;" height="16" width="63"></canvas><cufontext>PORTFOLIO</cufontext></cufon>
+        <cufon style="width: 13px; height: 14px;" alt="OF" class="cufon cufon-canvas"><canvas style="width: 18px; height: 16px; top: -1px; left: 0px;" height="16" width="18"></canvas><cufontext>OF</cufontext></cufon>
+    </p>
+    <h1 style="display: block;" class="cufon_k47">
+        <cufon style="width: 149px; height: 65px;" alt="ONLY " class="cufon cufon-canvas"><canvas style="width: 182px; height: 68px; top: -3px; left: -2px;" height="68" width="182"></canvas><cufontext>ONLY </cufontext></cufon>
+        <cufon style="width: 118px; height: 65px;" alt="SHADOW" class="cufon cufon-canvas"><canvas style="width: 140px; height: 68px; top: -3px; left: -2px;" height="68" width="140"></canvas><cufontext>SHADOW </cufontext></cufon>
+    </h1>
+    <div class="nav"><a href="index.html">首页</a><a href="list.html" class="now">设计作品</a><!--
+    --><a href="web.html">WEB前端</a><a href="jianli.html" target="_blank">关于我</a></div>
+    <ul class="caidan" id="ad">
+        <li class="now"><a href="javascript:">全部作品</a></li>
+        <li><a href="javascript:">平面作品</a></li>
+        <li><a href="javascript:">UI作品</a></li>
+        <li><a href="javascript:">网页设计</a></li>
+    </ul>
+    <!--<p class="jianshe">%>_<% 网站建设中</p>-->
+</div>
+<div id="list_content">
+    <ul class="list_content_img">
+        <li class="con_left"><a href="#"><img src="images/list_tubiao.jpg"></a></li>
+        <li class="con_right"><a href="#"><img src="images/list_login.jpg"></a></li>
+        <li class="con_left"><a href="#"><img src="images/list_zazhi1.jpg"></a></li>
+        <li class="con_right"><a href="#"><img src="images/list_jiu.jpg"></a></li>
+        <li class="con_left"><a href="#"><img src="images/list_phone.jpg"></a></li>
+        <li class="con_right"><a href="#"><img src="images/list_tongle.jpg"></a></li>
+    </ul>
+
+    <div class="page_list"><a href="list.html" class="up">上一页</a><a href="javascript:" class="index">2</a><span>/3</span><!--
+    --><a href="#" class="down">下一页</a><p class="yeshu"><a href="list.html">1</a><a href="list2.html">2</a><a href="javascript:">3</a></p></div>
+</div>
+<div id="footer">
+    <p>所有内容©版权所有2013 设计师：Damay</p>
+    <ul>
+        <li>Email: <a href="Meimeixi373@163.com">Meimeixi373@163.com</a></li>
+        <li>Telephone: +186 0083 9743</li>
+        <li>QQ: 2822 08414</li>
+    </ul>
+</div>
+</body>
+</html>

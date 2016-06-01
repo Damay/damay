@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>家具大视野</title>
+    <style type="text/css">
+        body{font-size:14px;color:blue}
+        table{font-size:14px;}
+    </style>
+    <script type="text/javascript">
+        <!--
+        function initdiv()
+        {
+            document.getElementById("div2").style.display="none";
+        }
+        function dh()
+        {
+            if (document.myform.sortcheck[0].checked==true)
+            {
+                document.getElementById("DIV1").style.display="block";
+                document.getElementById("DIV2").style.display="none";
+            }
+            else
+            {
+                document.getElementById("DIV2").style.display="block";
+                document.getElementById("DIV1").style.display="none";
+            }
+
+        }
+        function changetype()
+        {
+            var typelist = new Array();
+            typelist["电脑"] = ["长城110","IBM R60i","联想C466","戴尔911"];
+            typelist["冰箱"] = ["海尔冰箱","牛耳冰箱","双飞冰箱","美的冰箱"];
+            typelist["空调"] = ["远大空调","三菱空调","海尔空调","格力空调"];
+
+            var kindex=document.getElementById("selkind").value;
+            var newoption1;
+            document.getElementById("seltype").options.length=0;
+            for(var i in typelist[kindex])
+            {
+                newoption1 = new Option(typelist[kindex][i],typelist[kindex][i]);
+                document.getElementById("seltype").options.add(newoption1);
+            }
+        }
+        function commit1(divId)
+        {
+
+            var selKind = document.getElementById("selkind").value;
+            var selType = document.getElementById("seltype").value;
+            var num = document.getElementById("num1").value;
+
+            if(divId=="div1")
+            {
+                if(selKind=="请选择电器种类")
+                {alert("尚未选择商品种类");}
+                else if(document.getElementById("goumai").checked==false)
+                {alert("请选择购买！");}
+                else if(isNaN(num)||num<=0)
+                {alert("购买数量有误！");}
+                else
+                {
+                    var win=window.open("commit.html","购买信息","width=500 height=100 top=200 left=300");
+                    win.document.write("你好！<br>您选择的商品种类是："+selKind+";&nbsp;&nbsp;品牌类型为："+selType+";&nbsp;&nbsp;数量："+num);
+                    return;
+                }
+
+            }
+            if(divId=="div2")
+            {
+                win.document.write("你好！<br>您选择的商品种类是："+selKind+";品牌类型为："+selType+";数量："+num);
+                return;
+            }
+
+        }
+        //-->
+    </script>
+</head>
+<body onload="initdiv()">
+<form name="myform">
+    请选择商品类型：<input type="radio" name="sortcheck" checked onclick="dh()">电子设备
+    <input type="radio" name="sortcheck" onclick="dh()">生活用品
+</form>
+<div id="div1">
+    <TABLE border=1 width=600 align="center">
+        <tr>
+            <th>电器种类 </th>
+            <th>品牌型号 </th>
+            <th>是否购买</th>
+            <th>数量</th>
+            <th>购买</th>
+        </tr>
+        <tr height=50 align="center">
+            <td>
+                <select id="selkind" onchange="changetype()">
+                    <option value="请选择电器种类"selected>请选择电器种类</option>
+                    <option value="电脑">电脑</option>
+                    <option value="冰箱">冰箱</option>
+                    <option value="空调">空调</option>
+                </select>
+            </td>
+            <td>
+                <select id="seltype">
+                    <option selected>请选择品牌型号</option>
+                </select>
+            </td>
+            <td><input type="checkbox" id="goumai"></td>
+            <td><input size=5 id="num1"></td>
+            <td><input type="button" value="提交" onclick="commit1('div1')" style="background-color:#FFFFFF;color:blue"></td>
+        </tr>
+
+    </TABLE>
+</div><div id="div2">
+    <TABLE border=1 width=600 align="center">
+        <tr>
+            <th>生活用品分类</th>
+            <th>品牌型号</th>
+            <th>是否购买</th>
+            <th>数量</th>
+            <th>购买</th>
+        </tr>
+        <tr height=50 align="center">
+            <td>
+                <select id="selkind" onchange="changetype()">
+                    <option value="请选择电器种类"selected>请选择生活用品分类</option>
+                    <option value="电脑">电脑</option>
+                    <option value="冰箱">冰箱</option>
+                    <option value="空调">空调</option>
+                </select>
+            </td>
+            <td>
+                <select id="seltype">
+                    <option selected>请选择品牌型号</option>
+                </select>
+            </td>
+            <td><input type="checkbox" id="goumai"></td>
+            <td><input size=5 id="num1"></td>
+            <td><input type="button" value="提交" onclick="commit1('div1')" style="background-color:#FFFFFF;color:blue"></td>
+        </tr>
+
+    </TABLE>
+</div>
+</body>
+</html>
